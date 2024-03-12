@@ -7,10 +7,12 @@ database type of deal
 
 #Imports
 @onready var questionNodeScene = preload("res://cores/questionNode/questionNode.tscn");
-@onready var answerNodeScene = preload("res://cores/answerNode/answerNode.tscn");
+
+#Shorthand
+@onready var questionBank = $questionBank; #Used to denote where the questionNodes should be stored in godot's tree
 
 #Tech
-@onready var questionList = [];
+@onready var questionList = []; #Stores
 
 """
 ===============
@@ -22,10 +24,7 @@ GODOT FUNCTIONS
 func _ready():
 	testPreset();
 	print("bootupCore: Initialized");
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	printQuestions();
 
 """
 ==============
@@ -34,5 +33,22 @@ MISC FUNCTIONS
 """
 
 func testPreset():
-	print("testPreset: starting");
-	print("testPreset: finished");
+	var q = questionNodeScene.instantiate();
+	questionBank.add_child(q);
+	questionList.append(q);
+
+	#Q1
+	q.init(
+		"What song am I listening to?", 
+		[
+			["SONG-0", []],
+			["SONG-1", []],
+			["SONG-2", []],
+			["SONG-3", []]
+		]
+	);
+
+#Displays all info relevant to stored question nodes (such as the question, answers, etc)
+func printQuestions():
+	for i in questionList:
+		i.toString();

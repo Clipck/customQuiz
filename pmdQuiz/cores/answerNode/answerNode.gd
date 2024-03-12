@@ -1,11 +1,20 @@
 extends Node
 
+#Tech
+@onready var displayText = "answer!";
+@onready var list = []; #List of all quantifiers that will be adjusted by this question, and what they should change by
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+"""
+==============
+MISC FUNCTIONS
+==============
+"""
 
+#Used to populate the answer node w/ its displayText and change list
+func init(aText, givenList):
+	displayText = aText;
+	list = givenList;
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#Displays all info relevant to the answerNode, including the display text, and quantifier changes for the answer
+func toString():
+	print("	a: " + displayText);

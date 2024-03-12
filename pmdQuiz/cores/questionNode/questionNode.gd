@@ -1,21 +1,11 @@
 extends Node
 
-@onready var questionText = "I have a question.";
+#Imports
+@onready var answerNodeScene = preload("res://cores/answerNode/answerNode.tscn");
+
+#Tech
+@onready var displayText = "I have a question.";
 @onready var answerList = [];
-
-"""
-===============
-GODOT FUNCTIONS
-===============
-"""
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 """
 ==============
@@ -24,6 +14,20 @@ MISC FUNCTIONS
 """
 
 func init(qText, aList):
-	questionText = qText;
-	answerList = aList;
+	displayText = qText;
+	initAnswers(aList);
 	print("initialized");
+
+func toString():
+	print("q: " + displayText);
+	for i in answerList:
+		i.toString();
+
+#Takes care of generating answerNodes
+func initAnswers(aList):
+	#For every answer in the list...
+	for i in aList:
+		var a = answerNodeScene.instantiate(); #Create a new answerNode instance
+		self.add_child(a); #Store the answerNode under this questionNode
+		answerList.append(a); #Store a reference to the answerNode in answerList
+		a.init(i[0], i[1]);
