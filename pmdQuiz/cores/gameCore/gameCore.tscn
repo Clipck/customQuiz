@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4imdgrsvughy"]
+
+[ext_resource type="Script" path="res://cores/gameCore/gameCore.gd" id="1_ajlne"]
+
+[node name="gameCore" type="Node"]
+script = ExtResource("1_ajlne")

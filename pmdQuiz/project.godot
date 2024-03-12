@@ -10,7 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Pmd Quiz"
+config/name="pmdQuiz"
 run/main_scene="res://cores/bootupCore/bootupCore.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameCore="*res://cores/gameCore/gameCore.tscn"
