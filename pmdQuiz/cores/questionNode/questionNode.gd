@@ -13,10 +13,9 @@ MISC FUNCTIONS
 ==============
 """
 
-func init(qText, aList):
-	displayText = qText;
-	initAnswers(aList);
-	print("initialized");
+func init(data):
+	displayText = data[0];
+	initAnswers(data[1]);
 
 func toString():
 	print("q: " + displayText);
