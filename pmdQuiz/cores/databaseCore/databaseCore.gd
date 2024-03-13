@@ -61,9 +61,7 @@ func wipeQuestions():
 	questionList.clear();
 
 	#Remove all nodes from questionBank
-	for i in questionBank.get_children():
-		self.remove_child(i);
-		i.queue_free();
+	for i in questionBank.get_children(): i.queue_free();
 
 #Displays all info relevant to stored question nodes (such as the question, answers, etc)
 func printQuestionData():

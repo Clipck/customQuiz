@@ -1,8 +1,5 @@
 extends Control
 
-#Shorthand
-@onready var uiCore = get_parent();
-
 """
 =======
 SIGNALS
@@ -24,7 +21,7 @@ BUTTONS
 #Begin game
 func begin():
 	print("Begin!");
-	uiCore.gameCore.beginQuiz();
+	GameCore.gotoCoreGame();
 
 #Close game
 func exit():

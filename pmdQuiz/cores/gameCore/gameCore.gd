@@ -6,9 +6,19 @@ extends Node
 
 """
 ==============
-MISC FUNCTIONS
+GOTO FUNCTIONS
 ==============
 """
 
-func beginQuiz():
+#Swap UI to coreGame (the quiz)
+func gotoCoreGame():
+	uiCore.swapDisplay(1);
+
+	#Load quiz data up
 	dbCore.rebootData();
+
+
+#Swap UI to mainMenu
+func gotoMainMenu():
+	dbCore.wipeQuestions();
+	uiCore.swapDisplay(0);

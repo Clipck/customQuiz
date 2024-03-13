@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpe0fwxcbngqx"]
 
 [ext_resource type="Script" path="res://cores/uiCore/uiCore.gd" id="1_gvyn3"]
-[ext_resource type="PackedScene" uid="uid://bxus6jiedexa1" path="res://cores/uiCore/uiComponents/uiComp_mainMenu/uiComp_mainMenu.tscn" id="2_vwdiw"]
+[ext_resource type="PackedScene" uid="uid://c3pvbn3pjxs6n" path="res://cores/uiCore/uiComponents/mainMenu/uiComp_mainMenu.tscn" id="2_vwdiw"]
 
 [node name="uiCore" type="Control"]
 layout_mode = 3

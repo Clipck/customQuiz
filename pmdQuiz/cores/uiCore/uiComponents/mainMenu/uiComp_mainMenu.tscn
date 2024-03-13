@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxus6jiedexa1"]
+[gd_scene load_steps=2 format=3 uid="uid://c3pvbn3pjxs6n"]
 
-[ext_resource type="Script" path="res://cores/uiCore/uiComponents/uiComp_mainMenu/uiComp_mainMenu.gd" id="1_ndryq"]
+[ext_resource type="Script" path="res://cores/uiCore/uiComponents/mainMenu/uiComp_mainMenu.gd" id="1_fyon4"]
 
 [node name="menuMain" type="Control"]
 process_mode = 1
@@ -16,7 +16,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ndryq")
+script = ExtResource("1_fyon4")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
