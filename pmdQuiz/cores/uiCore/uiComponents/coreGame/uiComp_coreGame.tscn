@@ -12,9 +12,67 @@ grow_vertical = 2
 script = ExtResource("1_c18fm")
 
 [node name="bGotoMenuMain" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -36.0
+offset_right = 81.0
+offset_bottom = -5.0
+grow_vertical = 0
 text = "Exit Quiz"
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="displayBox" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -12.5
+offset_right = 225.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "I can display 48 characters"
+text_overrun_behavior = 1
+
+[node name="answerControl" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = 55.0
+offset_right = 127.0
+offset_bottom = 216.0
+grow_horizontal = 2
+
+[node name="bAnswer0" type="Button" parent="answerControl"]
+layout_mode = 2
+text = "answer0"
+
+[node name="bAnswer1" type="Button" parent="answerControl"]
+layout_mode = 2
+text = "answer1"
+
+[node name="bAnswer2" type="Button" parent="answerControl"]
+layout_mode = 2
+text = "answer2"
+
 [connection signal="pressed" from="bGotoMenuMain" to="." method="_on_b_goto_exit_quiz_pressed"]
+[connection signal="pressed" from="answerControl/bAnswer0" to="." method="_on_b_answer_pressed" binds= [0]]
+[connection signal="pressed" from="answerControl/bAnswer1" to="." method="_on_b_answer_pressed" binds= [1]]
+[connection signal="pressed" from="answerControl/bAnswer2" to="." method="_on_b_answer_pressed" binds= [2]]
