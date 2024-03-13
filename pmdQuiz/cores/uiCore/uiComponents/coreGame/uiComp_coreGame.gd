@@ -13,7 +13,6 @@ SIGNALS
 """
 
 func _on_b_answer_pressed(buttonNumber):
-	print(buttonNumber)
 	answerChoice(buttonNumber);
 
 func _on_b_goto_exit_quiz_pressed():
