@@ -16,16 +16,6 @@ This is where the quiz, and all art-related assets would be loaded.
 @onready var questionList = [];
 
 """
-===============
-GODOT FUNCTIONS
-===============
-"""
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass;
-
-"""
 ==============
 FILE FUNCTIONS
 ==============
