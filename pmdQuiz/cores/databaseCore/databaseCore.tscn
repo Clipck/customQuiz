@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdtdahxu15hjr"]
+
+[ext_resource type="Script" path="res://cores/databaseCore/databaseCore.gd" id="1_ph36g"]
+
+[node name="databaseCore" type="Node"]
+script = ExtResource("1_ph36g")
+
+[node name="questionBank" type="Node" parent="."]

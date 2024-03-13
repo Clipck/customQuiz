@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4imdgrsvughy"]
+[gd_scene load_steps=3 format=3 uid="uid://c4imdgrsvughy"]
 
 [ext_resource type="Script" path="res://cores/gameCore/gameCore.gd" id="1_ajlne"]
+[ext_resource type="PackedScene" uid="uid://cdtdahxu15hjr" path="res://cores/databaseCore/databaseCore.tscn" id="2_vmfj5"]
 
 [node name="gameCore" type="Node"]
 script = ExtResource("1_ajlne")
+
+[node name="databaseCore" parent="." instance=ExtResource("2_vmfj5")]

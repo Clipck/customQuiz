@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dk6jbt8cftfcj"]
-
-[ext_resource type="Script" path="res://cores/bootupCore/bootupCore.gd" id="1_dusok"]
-
-[node name="bootupCore" type="Node2D"]
-script = ExtResource("1_dusok")
-
-[node name="questionBank" type="Node" parent="."]

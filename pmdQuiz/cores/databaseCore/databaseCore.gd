@@ -1,8 +1,7 @@
-extends Node2D
+extends Node
 
 """
-This is where the quiz, and all art-related assets would be loaded. I figure this would double as a
-database type of deal
+This is where the quiz, and all art-related assets would be loaded. 
 """
 
 #Imports
@@ -12,12 +11,9 @@ database type of deal
 @onready var questionBank = $questionBank; #Used to denote where the questionNodes should be stored in godot's tree
 
 #Tech
+@onready var quizPath = "user://quizFile.json";
 @onready var quizData = {};
-@onready var quizPath = "user://prototype0.5.txt";
 @onready var questionList = [];
-
-@onready var questionsToAsk = 0; #If <= 0, asks all questions. Otherwise, it'll ask the first N questions
-@onready var randomzedOrder = false; #If you aren't asking all the questions, it's recommended to randomize the question order
 
 """
 ===============
@@ -27,9 +23,7 @@ GODOT FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	quizData = openFile(quizPath);
-	ingestFile_questions(quizData["questionData"]);
-	printQuestions();
+	pass;
 
 """
 ==============
@@ -60,17 +54,30 @@ func ingestFile_questions(questionData):
 		questionList.append(q);
 		q.init(i);
 
-	#Grab misc info
-	questionsToAsk = questionData["questionsToAsk"];
-	randomzedOrder = questionData["randomizedOrder"];
-
 """
 ==============
 MISC FUNCTIONS
 ==============
 """
 
+func rebootData():
+	wipeQuestions();
+	quizData = openFile(quizPath);
+	ingestFile_questions(quizData["questionData"]);
+	printQuestionData();
+
+func wipeQuestions():
+	#Clear questionList
+	questionList.clear();
+
+	#Remove all nodes from questionBank
+	for i in questionBank.get_children():
+		self.remove_child(i);
+		i.queue_free();
+
 #Displays all info relevant to stored question nodes (such as the question, answers, etc)
-func printQuestions():
+func printQuestionData():
+	print(quizData["title"]); #Display quiz title
+	print(quizData["creator"]); #Display author
 	for i in questionList:
 		i.toString();

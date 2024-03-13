@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pmdQuiz"
-run/main_scene="res://cores/bootupCore/bootupCore.tscn"
+run/main_scene="res://examinationRoom/examinationRoom.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
