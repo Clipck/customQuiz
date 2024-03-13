@@ -54,7 +54,6 @@ func rebootData():
 	wipeQuestions();
 	quizData = openFile(quizPath);
 	ingestFile_questions(quizData["questionData"]);
-	printQuestionData();
 
 func wipeQuestions():
 	#Clear questionList

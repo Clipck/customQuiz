@@ -2,9 +2,7 @@ extends Control
 
 #Shorthand
 @onready var displayBox = $Panel/displayBox;
-
-func _process(delta):
-	displayBox.text = GameCore.dbCore.questionList[0].displayText;
+@onready var bAnswerList = [$answerControl/bAnswer0, $answerControl/bAnswer1, $answerControl/bAnswer2];
 
 """
 =======
@@ -19,14 +17,26 @@ func _on_b_goto_exit_quiz_pressed():
 	exitQuiz();
 
 """
-=======
-BUTTONS
-=======
+=============
+BUTTON INPUTS
+=============
 """
 
 func answerChoice(answerNumber):
-	pass;
+	GameCore.quizQAnswer(answerNumber);
 
 func exitQuiz():
 	GameCore.gotoMainMenu();
+
+"""
+===============
+DISPLAY CONTROL
+===============
+"""
+
+func setQDisplayText(text):
+	displayBox.text = text;
+
+func setADisplayText(buttonIndex, text):
+	bAnswerList[buttonIndex].text = text;
 
