@@ -5,7 +5,7 @@ extends Node
 @onready var uiCore = $uiCore;
 
 #Tech
-@onready var quizProgress = 0;
+@onready var quizProgress = 0; #Tracks what current question we're on, via the index of said question in dbCore's list
 @onready var quantifierDict = {}; # quantifierName : points
 
 """
@@ -109,5 +109,23 @@ func quizQAnswer(answerNumber):
 
 	var questionReq = dbCore.quizData["questionData"]["questionsToAsk"]; #Grab how many questions we need to ask
 	var questionReqCheck = (quizProgress >= questionReq) && (questionReq > 0); #Check if we've met said requirement
-	if( questionReqCheck || endOfQuizCheck ): gotoMainMenu();
-	else: quizQLoad(quizProgress);
+	if( questionReqCheck || endOfQuizCheck ): 
+		quizEvaluate();
+		gotoMainMenu();
+	else: 
+		quizQLoad(quizProgress);
+
+func quizEvaluate():
+	#Determine the highest scoring quantifier by cycling through every key
+	var highestQuantifier = null;
+	for key in quantifierDict:
+		if( 
+			(highestQuantifier == null) || #If this is the first key, go ahead and record it as our initial high score
+			(quantifierDict[highestQuantifier] < quantifierDict[key]) #If this key beats our recorded high score, update it
+		): 
+			highestQuantifier = key;
+	#State the highest quantifier
+	print("You scored highest for "+highestQuantifier);
+
+	#State the result(s) tied to said quantifier
+	print(dbCore.quizData["quantifierData"]["quantifierPools"][highestQuantifier]);
