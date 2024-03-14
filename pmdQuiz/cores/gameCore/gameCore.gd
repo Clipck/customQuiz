@@ -6,6 +6,7 @@ extends Node
 
 #Tech
 @onready var quizProgress = 0;
+@onready var quantifierDict = {}; # quantifierName : points
 
 """
 ==============
@@ -40,8 +41,9 @@ func quizInit():
 	#Shuffle questionList if needed
 	if(dbCore.quizData["questionData"]["randomizedOrder"]): dbCore.questionList.shuffle();
 
-	#Init var used to track progress through quiz
+	#Init/reset vars used to track progress during quiz
 	quizProgress = 0;
+	quantifierDict = {};
 
 	#Load up the first question
 	quizQLoad(quizProgress);
@@ -84,6 +86,7 @@ func quizQLoad_answers(qIndex, answerOffset = 0):
 
 #Processes an answer for the question on screen 
 func quizQAnswer(answerNumber):
+	#Grab shorthand
 	var alQ = dbCore.questionList[quizProgress].answerList;
 
 	#Verify that the button clicked was valid and not somehow out of bounds
@@ -91,7 +94,14 @@ func quizQAnswer(answerNumber):
 		print("OOB response!");
 		return -1;
 
-	#
+	#Go through each "outcome" of the answer
+	for currOutcome in alQ[answerNumber].list:
+		print(currOutcome)
+		#If the quantifier is in the dictionary already, update it
+		if(quantifierDict.has(currOutcome[0])): quantifierDict[currOutcome[0]] += currOutcome[1];
+		#Otherwise, insert it
+		else: quantifierDict[currOutcome[0]] = 1;
+	print(quantifierDict)
 
 	#Increment question progress. Determine if we should end quiz or load next question
 	quizProgress += 1;
