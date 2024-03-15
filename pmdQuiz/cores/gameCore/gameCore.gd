@@ -101,7 +101,6 @@ func quizQAnswer(answerNumber):
 		if(quantifierDict.has(currOutcome[0])): quantifierDict[currOutcome[0]] += currOutcome[1];
 		#Otherwise, insert it
 		else: quantifierDict[currOutcome[0]] = 1;
-	print(quantifierDict)
 
 	#Increment question progress. Determine if we should end quiz or load next question
 	quizProgress += 1;
@@ -111,7 +110,6 @@ func quizQAnswer(answerNumber):
 	var questionReqCheck = (quizProgress >= questionReq) && (questionReq > 0); #Check if we've met said requirement
 	if( questionReqCheck || endOfQuizCheck ): 
 		quizEvaluate();
-		gotoMainMenu();
 	else: 
 		quizQLoad(quizProgress);
 
@@ -124,8 +122,21 @@ func quizEvaluate():
 			(quantifierDict[highestQuantifier] < quantifierDict[key]) #If this key beats our recorded high score, update it
 		): 
 			highestQuantifier = key;
-	#State the highest quantifier
-	print("You scored highest for "+highestQuantifier);
 
-	#State the result(s) tied to said quantifier
-	print(dbCore.quizData["quantifierData"]["quantifierPools"][highestQuantifier]);
+	#Prep the visuals of the "evaluation screen"
+		#Update visibility of buttons and text
+	uiCore.currentDisplay.setAControlVisibility(false);
+	uiCore.currentDisplay.setFTextVisibility(true);
+		#Display actual quiz results
+	var qDisplayText = dbCore.quizData["quantifierData"]["evaluationDisplay"] + highestQuantifier;
+	uiCore.currentDisplay.setQDisplayText(qDisplayText);
+
+		#This is some really gross logic + string construction but I kinda wanna be done w/ this project now and hand it to friends to play with
+	var fDisplayText = dbCore.quizData["quantifierData"]["poolDisplay"];
+	var resultPool = dbCore.quizData["quantifierData"]["quantifierPools"][highestQuantifier]
+	for i in resultPool.size():
+		if(i > 0): 
+			if(i < resultPool.size()-1): fDisplayText += ", a ";
+			else: fDisplayText += " or a ";
+		fDisplayText += dbCore.quizData["quantifierData"]["quantifierPools"][highestQuantifier][i];
+	uiCore.currentDisplay.setFDisplayText(fDisplayText);

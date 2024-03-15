@@ -1,7 +1,11 @@
 extends Control
 
 #Shorthand
-@onready var displayBox = $Panel/displayBox;
+@onready var finalText = $finalText;
+@onready var answerControl = $answerControl;
+
+@onready var qDisplayText = $mainText/displayBox;
+@onready var fDisplayText = $finalText/displayBox;
 @onready var bAnswerList = [$answerControl/bAnswer0, $answerControl/bAnswer1, $answerControl/bAnswer2];
 
 """
@@ -33,10 +37,18 @@ func exitQuiz():
 DISPLAY CONTROL
 ===============
 """
-
+#Text
 func setQDisplayText(text):
-	displayBox.text = text;
+	qDisplayText.text = text;
 
 func setADisplayText(buttonIndex, text):
 	bAnswerList[buttonIndex].text = text;
 
+func setFDisplayText(text):
+	fDisplayText.text = text;
+#Visibility
+func setAControlVisibility(vis):
+	answerControl.visible = vis;
+
+func setFTextVisibility(vis):
+	finalText.visible = vis;
